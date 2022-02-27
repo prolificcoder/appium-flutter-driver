@@ -10,9 +10,11 @@ class ExampleTests < Minitest::Test
     caps: {
       platformName: 'Android',
       automationName: 'flutter',
-      udid: 'emulator-5554',
+      udid: '3247484e36443498', #Also tried emulator
+      appPackage: 'com.sofi.mobile',
+      appActivity: '.login.splashscreen.SplashScreenActivity',
       deviceName: 'Android',
-      app: "#{Dir.pwd}/../sample2/app-debug.apk"
+      app: '/Users/smalugu/code/wealth-android/app/build/outputs/apk/debug/app-debug.apk'
     },
     appium_lib: {
       export_session: true,
@@ -27,29 +29,11 @@ class ExampleTests < Minitest::Test
 
     @driver.context = 'NATIVE_APP'
 
-    element = @driver.find_element :id, 'dev.flutter.example.androidfullscreen:id/launch_button'
+    element = @driver.find_element :id, 'id:com.sofi.mobile:id/login_button'
     element.click
+    #Add login code
 
     @driver.context = 'FLUTTER'
 
-    text_finder = by_text 'Tap me!'
-    element = ::Appium::Flutter::Element.new(@driver, finder: text_finder)
-    assert_equal 'Tap me!', element.text
-
-    element.click
-    element.click
-
-    text_finder = by_text 'Taps: 2'
-    element = ::Appium::Flutter::Element.new(@driver, finder: text_finder)
-    assert_equal 'Taps: 2', element.text
-
-    text_finder = by_text 'Exit this screen'
-    element = ::Appium::Flutter::Element.new(@driver, finder: text_finder)
-    element.click
-
-    @driver.context = 'NATIVE_APP'
-
-    element = @driver.wait_until { |d| d.find_element :id, 'dev.flutter.example.androidfullscreen:id/counter_label' }
-    assert_equal 'Current count: 2', element.text
   end
 end

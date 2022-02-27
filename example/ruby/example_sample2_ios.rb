@@ -12,7 +12,7 @@ class ExampleTests < Minitest::Test
       automationName: 'flutter',
       platformVersion: '15.0',
       deviceName: 'iPhone 12 Pro',
-      app: "#{Dir.pwd}/../sample2/iOSFullScreen.zip"
+      app: '/Users/smalugu/Library/Developer/Xcode/DerivedData/mobile-ftqnirnavgakpxdbxglqkezteidz/Build/Products/Debug-iphonesimulator/Sofi Mobile.zip'
     },
     appium_lib: {
       export_session: true,
